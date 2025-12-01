@@ -1,0 +1,492 @@
+{
+	"info": {
+		"_postman_id": "4b69b816-fb20-4864-b916-efaf546521f9",
+		"name": "Pooja P_product Listing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50230970",
+		"_collection_link": "https://poojap24mss037-7864503.postman.co/workspace/POOJA-P-24MSS037's-Workspace~60acc2b1-c628-434e-8d9a-10e52934b0f8/collection/50230970-4b69b816-fb20-4864-b916-efaf546521f9?action=share&source=collection_link&creator=50230970"
+	},
+	"item": [
+		{
+			"name": "allproducts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"status code verify\",function()\r",
+							"{\r",
+							"     pm.response.to.have.status(200);\r",
+							"}\r",
+							");\r",
+							"pm.test(\"status message verify\",function()\r",
+							"{\r",
+							"     pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"pm.test(\"status code in range\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.code).to.be.within(200,404);\r",
+							"});\r",
+							"pm.test(\"range of the status code verify\",function()\r",
+							"    {\r",
+							"        pm.expect(pm.response.code).to.be.oneOf([200,201,205]);\r",
+							"    }\r",
+							")\r",
+							"pm.test(\"status code below verify\",function()\r",
+							"    {\r",
+							"        pm.expect(pm.response.code).to.be.below(201);\r",
+							"    }\r",
+							")\r",
+							"pm.test(\"status code above verify\",function()\r",
+							"    {\r",
+							"        pm.expect(pm.response.code).to.be.above(199);\r",
+							"    }\r",
+							")\r",
+							"pm.test(\"verify response time\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+							"}\r",
+							")\r",
+							"pm.test(\"verify response time\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.responseTime).to.be.above(255);\r",
+							"}\r",
+							")\r",
+							"pm.test(\"check content type header is present\",function()\r",
+							"{\r",
+							"    pm.response.to.have.header(\"Content-type\");\r",
+							"})\r",
+							"pm.test(\"check value of content type \",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.headers.get(\"Content-type\")).to.eql(\"application/json\");\r",
+							"})\r",
+							"pm.test(\"check value of content-type \",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.headers.get(\"Content-type\")).to.include(\"son\");\r",
+							"})\r",
+							"pm.test(\"check multiple headers\",function()\r",
+							"{\r",
+							"    const data=[\"Content-Length\",\"Content-Type\",\"Date\"];\r",
+							"    data.forEach(h=>\r",
+							"    {\r",
+							"        pm.response.to.have.header(h);\r",
+							"    })\r",
+							"});\r",
+							"pm.test(\"test status code using if-else\",function()\r",
+							"{\r",
+							"    let data=pm.response.code;\r",
+							"    if(data===200)\r",
+							"    {\r",
+							"        pm.response.to.have.status(\"OK\");\r",
+							"    }\r",
+							"    else{\r",
+							"        pm.response.to.have.status(\"Not Found\");\r",
+							"    }\r",
+							"})\r",
+							"pm.test(\"ststus code is not in oneOf function\",function()\r",
+							"    {\r",
+							"        pm.expect(pm.response.code).to.not.oneOf([201,202,203,204,205,206,207]);\r",
+							"    }\r",
+							")\r",
+							"pm.test(\"content-length value check\",function()\r",
+							"{\r",
+							"    let data=pm.response.headers.get(\"content-length\");\r",
+							"    pm.expect(Number(data)).to.eql(75);\r",
+							"});\r",
+							"pm.test(\"content-length\",function()\r",
+							"{\r",
+							"    let data=pm.response.headers.get(\"content-length\");\r",
+							"    pm.expect(Number(data)).to.be.above(70);\r",
+							"});\r",
+							"pm.test(\"content-length\",function()\r",
+							"{\r",
+							"    let data=pm.response.headers.get(\"content-length\");\r",
+							"    pm.expect(Number(data)).to.be.below(4289);\r",
+							"});\r",
+							"pm.test(\"verify value data\",function()\r",
+							"{\r",
+							"    pm.expect(Number(pm.response.json().price)).to.be.a('number');\r",
+							"})\r",
+							"pm.test(\"price value below range check\",function()\r",
+							"{\r",
+							"    pm.expect(Number(pm.response.json().price)).to.be.below(1000);\r",
+							"})\r",
+							"pm.test(\"price value above range check\",function()\r",
+							"{\r",
+							"    pm.expect(Number(pm.response.json().price)).to.be.above(75);\r",
+							"})"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/products/2",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"products",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createproduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC01 - verify response time < 2000\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3577);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC01 - status code verify 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC01 - status code within 200-299\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.within(200, 299);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC01 - check Content-Type header present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC01 - check Content-Type value contains json\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\").toLowerCase()).to.include(\"json\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC01 - response has required product fields\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"id\");\r",
+							"    pm.expect(jsonData).to.have.property(\"stock\");\r",
+							"    pm.expect(jsonData).to.have.property(\"price\");\r",
+							"});\r",
+							"pm.test(\"TC03 - status code verify 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC03 - status code within 200-299\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.within(200, 299);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC03 - error message mentions already / exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var msg = JSON.stringify(jsonData).toLowerCase();\r",
+							"    pm.expect(msg).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"TC08 - status code verify 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC08 - stock is exactly 0\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.stock).to.eql( '{{stock}}');\r",
+							"});\r",
+							"pm.test(\"TC15 - status code verify 201 or 400 based on rule\", function () {\r",
+							"    pm.expect([201, 400]).to.include(pm.response.code);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC15 - if success, product fields exist\", function () {\r",
+							"    if (pm.response.code === 201) {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.have.property(\"id\");\r",
+							"        pm.expect(jsonData).to.have.property(\"stock\");\r",
+							"        pm.expect(jsonData).to.have.property(\"price\");\r",
+							"    }\r",
+							"});\r",
+							"pm.test(\"TC03 - error message mentions already / exists\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var msg = JSON.stringify(jsonData).toLowerCase();\r",
+							"    pm.expect(msg).to.include(\"id\");\r",
+							"});\r",
+							"pm.test(\"TC08 - status code verify 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"TC15 - status code verify 201 or 400 based on rule\", function () {\r",
+							"    pm.expect([201, 400]).to.include(pm.response.code);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC15 - if success, product fields exist\", function () {\r",
+							"    if (pm.response.code === 201) {\r",
+							"        var jsonData = pm.response.json();\r",
+							"        pm.expect(jsonData).to.have.property(\"id\");\r",
+							"        pm.expect(jsonData).to.have.property(\"stock\");\r",
+							"        pm.expect(jsonData).to.have.property(\"price\");\r",
+							"    }\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"productname\": \"{{productname}}\",\r\n        \"price\": \"{{price}}\",\r\n        \"stock\": \"{{stock}}\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/products",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getbyid",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"response exists or not\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"})\r",
+							"pm.test(\"response exists or not\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.text()).to.not.be.empty;\r",
+							"})\r",
+							"pm.test(\"verify property exists\",function()\r",
+							"{\r",
+							"    pm.expect(pm.response.json()).to.have.property(\"productname\");\r",
+							"})\r",
+							"pm.test(\"verify value of the property exists\",function()\r",
+							"{\r",
+							"    let data=pm.response.json().price;\r",
+							"    pm.expect(Number(data)).to.eql(951.08);\r",
+							"})\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BaseURL}}/products/2",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"products",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateproduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"TC01 - status code verify 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC01 - Content-Type is JSON\", function () {\r",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\").toLowerCase()).to.include(\"json\");\r",
+							"});\r",
+							"pm.test(\"TC02 - status code verify 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC02 - error mentions not found\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    var msg = JSON.stringify(jsonData).toLowerCase();\r",
+							"    //pm.expect(msg).to.include(\"not found\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC05 - status code verify 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC05 - stock is 0 after update\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    //pm.expect(jsonData.stock).to.eql(true);\r",
+							"});\r",
+							"pm.test(\"TC15 - status code verify 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"TC15 - Content-Type JSON for error response\", function () {\r",
+							"    var ct = pm.response.headers.get(\"Content-Type\") || \"\";\r",
+							"    pm.expect(ct.toLowerCase()).to.include(\"json\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": " {\r\n        \"productname\": \"{{productname}}\",\r\n        \"price\": \"{{price}}\",\r\n        \"stock\": {{stock}},\r\n        \"id\": \"{{id}}\"\r\n    }"
+				},
+				"url": {
+					"raw": "{{BaseURL}}/products/7",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"products",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteproduct",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3709);\r",
+							"});\r",
+							"pm.test(\"Content-Type header is present\", function () {\r",
+							"    pm.expect(pm.response.headers.has(\"Content-Type\")).to.be.true;\r",
+							"});\r",
+							"pm.test(\"Invalid ID should return error\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"});\r",
+							"pm.test(\"Invalid ID should return error\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 404]);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BaseURL}}/products/6",
+					"host": [
+						"{{BaseURL}}"
+					],
+					"path": [
+						"products",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseURL",
+			"value": "https://69243e8b3ad095fb84735610.mockapi.io"
+		},
+		{
+			"key": "id",
+			"value": "56"
+		}
+	]
+}
